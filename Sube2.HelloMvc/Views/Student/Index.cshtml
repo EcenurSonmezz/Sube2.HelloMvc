@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Ogrenci>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #343a40;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .btn {
+            margin-bottom: 1rem;
+        }
+        .table {
+            margin-top: 1.5rem;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .table th {
+            background-color: #007bff;
+            color: white;
+        }
+        .table td, .table th {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .btn-outline-primary {
+            color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-outline-primary:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-outline-success, .btn-outline-danger, .btn-info {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Öğrenci İşlemleri</h1>
+    <a asp-action="AddStudent" asp-controller="Student" class="btn btn-outline-primary">Öğrenci Ekle</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Numara</th>
+                <th>Ad</th>
+                <th>Soyad</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Numara</td>
+                    <td>@item.Ad</td>
+                    <td>@item.Soyad</td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-success" href="/Student/EditStudent/@item.OgrenciId">Düzenle</a> 
+                        <a onclick="return confirm('Emin Misiniz?')" class="btn btn-sm btn-outline-danger" href="/Student/DeleteStudent/@item.OgrenciId">Sil</a>
+                        <a class="btn btn-outline-info" href="/Student/Detay/@item.OgrenciId">Detay</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @section Scripts {
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    }
+</body>
+</html>

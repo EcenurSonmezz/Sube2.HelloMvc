@@ -1,0 +1,19 @@
+﻿@model Sube2.HelloMvc.Models.Ders
+
+@{
+    ViewData["Title"] = "Ders Düzenle";
+}
+
+<div class="container mt-4">
+    <h2>Ders Düzenle</h2>
+
+    <form asp-action="EditDers">
+        <input type="hidden" name="DersId" value="@Model.DersId" />
+        <div class="form-group">
+            <label for="DersAdi">Ders Adı</label>
+            <input type="text" class="form-control" id="DersAdi" name="DersAdi" value="@Model.DersAdi" required />
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Kaydet</button>
+        <a asp-action="Index" class="btn btn-secondary mt-2">Geri</a>
+    </form>
+</div>
